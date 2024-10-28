@@ -362,3 +362,54 @@ aside {
   background-color: var(--white);
 }
 
+/* Gallery block */
+
+.gallery-block {
+  display: flex;
+  flex-direction: column;
+  gap: 4vh;
+}
+
+.gallery-img-big-block {
+  display: flex;
+  flex-direction: column;
+  gap: 2vh;
+}
+
+.gallery-line {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.gallery-col {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2vh;
+}
+
+.gallery-img-big {
+  border-radius: 4px;
+  width: 23.5vw;
+  height: 58vh;
+}
+
+.gallery-img-small {
+  border-radius: 4px;
+  width: 23.5vw;
+  height: 28vh;
+}
+
+.gallery-img-wide {
+  border-radius: 4px;
+  width: 47.8vw;
+  height: 58vh;
+}
+
+.gallery-text-block {
+  display: flex;
+  flex-direction: column;
+  gap: 2vh;
+  width: 45vw;
+}

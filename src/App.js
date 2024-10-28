@@ -43,6 +43,7 @@ function MainPage({page, setPage}) {
       <NewsBlock setPage={setPage} />
       <div className='container'>
         <Residents />
+        <GalleryBlock />
       </div>
     </>
   )
@@ -271,8 +272,8 @@ function Residents() {
 function GalleryBlock() {
   return (
     <>
-      <div className='gallery-block'>
-        <h3></h3>
+      <div className='gallery-block mb'>
+        <h3>ФОТОГАЛЕРЕЯ</h3>
         <div className='gallery-img-big-block'>
 
           <div className='gallery-line'>
@@ -291,6 +292,10 @@ function GalleryBlock() {
               <img src={gal7} className='gallery-img-small' alt='Photo'></img>
             </div>
           </div>
+        </div>
+        <div className='gallery-text-block'>
+          <p>Команда Калужской области – ваш надежный партнер в развитии бизнеса.</p>
+          <p>С 2006 года в Калужской области открыто <b>116</b> новых предприятий. Более <b>220</b> проектов со всего мира реализуются на территории региона.</p>
         </div>
       </div>
     </>
