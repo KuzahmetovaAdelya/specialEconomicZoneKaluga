@@ -19,6 +19,7 @@ import gal4 from "./news1.png"
 import gal5 from "./gal3.png"
 import gal6 from "./news3.png"
 import gal7 from "./gal4.png"
+import menu from "./menu.svg"
 
 export default function App() {
   const [page, setPage] = useState(1)
@@ -45,6 +46,7 @@ function MainPage({page, setPage}) {
         <Residents />
         <GalleryBlock />
       </div>
+      <Footer />
     </>
   )
 }
@@ -296,6 +298,108 @@ function GalleryBlock() {
         <div className='gallery-text-block'>
           <p>Команда Калужской области – ваш надежный партнер в развитии бизнеса.</p>
           <p>С 2006 года в Калужской области открыто <b>116</b> новых предприятий. Более <b>220</b> проектов со всего мира реализуются на территории региона.</p>
+        </div>
+      </div>
+    </>
+  )
+}
+
+function Footer() {
+  const footerList = [
+    {
+      title: "Общая информация",
+      elements: [
+        "Земельные участки",
+        "Инфраструктура",
+        "График реализации проектов"
+      ]
+    },
+    {
+      title: "Площадка Боровск",
+      elements: [
+        "Общая информация",
+        "Земельные участки",
+        "Инфраструктура",
+        "График реализации проектов"
+      ]
+    },
+    {
+      title: "Что такое ОЭЗ",
+      elements: [
+        "Общая информация",
+        "История создания",
+        "Налоговые льготы",
+        "Таможенные преференции",
+        "Логистика",
+        "Резиденты"
+      ]
+    },
+    {
+      title: "Площадка Боровск",
+      elements: [
+        "Общая информация",
+        "Земельные участки",
+        "Инфраструктура",
+        "График реализации проектов"
+      ]
+    },
+    {
+      title: " ",
+      elements: [
+        "Нормативные документы и бланки",
+        "Раскрытие информации",
+        "Закупки",
+        "Контакты",
+        "Услуги",
+        "Свободные земельные участки"
+      ]
+    }
+  ];
+
+  return (
+    <>
+      <footer>
+        <div className='container'>
+          <div className='footer-list-block'>
+            <FooterList list={footerList[0]} />
+            <FooterList list={footerList[1]} />
+            <FooterList list={footerList[2]} />
+            <FooterList list={footerList[3]} />
+          </div>
+
+          <div className='footer-list-block bottom'>
+            <div className='footer-text-block'>
+              <p className='white'><b>+7 (4842) 70-50-50</b></p>
+              <p className='white light'>Боровский район, c. Ворсино, Северная промышленная зона, владение 9</p>
+              <p className='white light'>office@oez.kaluga.ru</p>
+            </div>
+
+
+
+            <div className='footer-text-block footer'>
+              <button className='footer-button'>A</button>
+            </div>
+          </div>
+
+        </div>
+      </footer>
+    </>
+  )
+}
+
+function FooterList({list}) {
+  let footerList = []
+  for (let i = 0; i < list.elements.length; i++) {
+    footerList.push(<p className='small light white'>{list.elements[i]}</p>)
+
+  }
+
+  return (
+    <>
+      <div className='footer-list'>
+        <p className='yellow'>{list.title}</p>
+        <div className='footer-list-elements'>
+          {footerList}
         </div>
       </div>
     </>

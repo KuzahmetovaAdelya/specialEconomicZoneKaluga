@@ -44,6 +44,10 @@ a, button {
   color: var(--gray);
 }
 
+.yellow {
+  color: var(--yellow);
+}
+
 p, a {
   font-size: 18px;
   font-weight: 500;
@@ -413,3 +417,5 @@ aside {
   gap: 2vh;
   width: 45vw;
 }
+
+/* Footer */
