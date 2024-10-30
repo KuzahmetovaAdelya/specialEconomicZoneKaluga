@@ -75,6 +75,10 @@ b {
   font-weight: 400;
 }
 
+.underlined {
+  text-decoration: underline;
+}
+
 h1 {
   font-size: 48px;
   line-height: 56px;
@@ -419,3 +423,209 @@ aside {
 }
 
 /* Footer */
+
+footer {
+  background-color: var(--black);
+  padding: 4vh 1vw;
+}
+
+.footer-list-block {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.footer-list {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 3vh;
+}
+
+.footer-list-elements {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2vh;
+}
+
+.bottom {
+  align-items: flex-end;
+}
+
+.footer-text-block {
+  display: flex;
+  flex-direction: column;
+  gap: 3vh;
+}
+
+.small-block {
+  width: 25%;
+}
+
+.footer-button {
+  display: flex; 
+  align-items: center;
+  justify-content: space-evenly;
+  width: 110%;
+  padding: 1vh 1vw;
+  background: none; 
+}
+
+.footer-button p {
+  cursor: pointer;
+}
+
+/* Default pages */
+
+.page-title-text-block {
+  margin-bottom: 2vh;
+  padding-top: 2vh;
+}
+
+.page-text-block {
+  display: flex;
+  flex-direction: column;
+  gap: 5vh;
+  width: 60%;
+}
+
+/* Preferences */
+/* Cards */
+
+.preferences-card-block {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.preferences-card {
+  width: 45%;
+  box-shadow: 0px 0px 20px -2px #00000066;
+  border-radius: 4px;
+  height: 35vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.preferences-card-text-block {
+  display: flex;
+  flex-direction: column;
+  gap: 3vh;
+  padding: 4vh 2vw;
+  width: 60%;
+}
+
+.preferences-card-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1vh;
+}
+
+.preferences-card-list-element {
+  display: flex;
+  align-items: center;
+  gap: 0.5vw;
+}
+
+.preferences-card-bottom-block {
+  display: flex;
+  align-items: center;
+}
+
+.preferences-card-bottom {
+  border: 1px solid #00000066;
+  height: 7vh;
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.small-bottom {
+  width: 20% !important;
+  padding: 0 !important;
+}
+
+/* Places */
+/* Cards */
+
+.places-card {
+  width: 40%;
+  box-shadow: 0px 0px 20px -2px #00000066;
+  border-radius: 4px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  background-image: url(./map2.png);
+  background-repeat: no-repeat;
+  background-position: 50% 0;
+  padding: 25vh 2vw 2vh 2vw;
+}
+
+.places-card-text-block {
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+  gap: 2vh;
+}
+
+.places-card-text-block h4 {
+  width: 50%;
+}
+
+/* Ploshadki */
+/* First block */
+
+.plosh-first {
+  width: 100%;
+  border: 1px solid #00000066;
+  border-radius: 4px;
+  display: flex;
+  align-items: flex-start;
+}
+
+.plosh-first-text-block {
+  border: 1px solid #00000066;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 40%;
+  padding: 3vh 2vw;
+  height: 64vh;
+}
+
+.plosh-first-text-block-text {
+  display: flex;
+  flex-direction: column;
+  gap: 4vh;
+  align-items: flex-start;
+}
+
+.plosh-first-img-block {
+  border: 1px solid #00000066;
+  height: 100%;
+  width: 80%;
+  display: flex;
+  padding: 3vh 2vw;
+  height: 64vh;
+  justify-content: center;
+}
+
+.plosh-first-img {
+  width: 100%;
+}
+
+.plosh-first-text-block-little-text {
+  border: 1px solid #00000066;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  height: 21.1vh;
+}
+
+.plosh-first .small-bottom {
+  height: 100%;
+}
