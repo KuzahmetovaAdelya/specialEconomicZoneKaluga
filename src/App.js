@@ -23,7 +23,11 @@ import menu from "./menu.svg"
 import circle from "./circle.svg"
 import map2 from "./map2.png"
 import doc from "./document.svg"
+import inst from "./insta.svg"
+import facebook from "./facebook.svg"
+import vk from "./vk.svg"
 import news from "./list.js"
+
 
 export default function App() {
   const [page, setPage] = useState("main")
@@ -1186,21 +1190,33 @@ function FreePlacesTable({list}) {
 
 function NewsPage({page, setPage}) {
   const [newsPageNumber, setNewsPageNumber] = useState(0)
+  const [currentNew, setCurrentNew] = useState("")
+
+  return (
+    <>
+      {currentNew !== "" ? 
+      <OneNewPage page={page} setPage={setPage} currentNew={currentNew} newsPageNumber={newsPageNumber} setCurrentNew={setCurrentNew} /> :
+      <NewsInnerBlock page={page} setPage={setPage} newsPageNumber={newsPageNumber} setNewsPageNumber={setNewsPageNumber} setCurrentNew={setCurrentNew} />
+      }
+    </>
+  )
+}
+
+function NewsInnerBlock({page, setPage, newsPageNumber, setNewsPageNumber, setCurrentNew}) {
   let newsPage = [[], [], [], []]
   
   for (let i = 0; i < news[newsPageNumber].news.length; i++) {
     if (i <= 2) {
-      newsPage[0].push(<NewsPageCard info={news[newsPageNumber].news[i]} />)
+      newsPage[0].push(<NewsPageCard info={news[newsPageNumber].news[i]} setPage={setPage} setCurrentNew={setCurrentNew} />)
     } else if (i >= 3 && i <= 5) {
-      newsPage[1].push(<NewsPageCard info={news[newsPageNumber].news[i]} />)
+      newsPage[1].push(<NewsPageCard info={news[newsPageNumber].news[i]} setPage={setPage} setCurrentNew={setCurrentNew} />)
     } else if (i >= 6 && i <= 8) {
-      newsPage[2].push(<NewsPageCard info={news[newsPageNumber].news[i]} />)
+      newsPage[2].push(<NewsPageCard info={news[newsPageNumber].news[i]} setPage={setPage} setCurrentNew={setCurrentNew} />)
     } else {
-      newsPage[3].push(<NewsPageCard info={news[newsPageNumber].news[i]} />)
+      newsPage[3].push(<NewsPageCard info={news[newsPageNumber].news[i]} setPage={setPage} setCurrentNew={setCurrentNew} />)
     }
   }
 
-  console.log(news[0])
   return (
     <>
       <SideBar page={page} setPage={setPage} />
@@ -1222,8 +1238,7 @@ function NewsPage({page, setPage}) {
           </div>
 
           <div className='pagination'>
-            {/* Change this img on pagination */}
-            <img src={arrow} onClick={() => {setNewsPageNumber(2)}}></img>
+            <PaginationElement news={news} setNewsPageNumber={setNewsPageNumber} newsPageNumber={newsPageNumber} />
           </div>
         </div>
       </div>
@@ -1232,7 +1247,7 @@ function NewsPage({page, setPage}) {
   )
 }
 
-function NewsPageCard({info}) {
+function NewsPageCard({info, setPage, setCurrentNew}) {
   let cardImg = "news-img"
   if (info.img === 1) {
     cardImg = "news-img news-img1"
@@ -1244,13 +1259,84 @@ function NewsPageCard({info}) {
 
   return (
     <>
-      <div className="news-card">
+      <div className="news-card" onClick={() => {setCurrentNew(info.id)}}>
         <div className={cardImg}></div>
         <div className='news-card-text-block'>
           <p className='small gray'>{info.date}</p>
           <h4>{info.title}</h4>
           <p className='gray'>{info.text}</p>
         </div>
+      </div>
+    </>
+  )
+}
+
+function PaginationElement({news, setNewsPageNumber, newsPageNumber}) {
+  let paginationList = []
+  let pagClass = 'pagination-element'
+  for (let i = 0; i < news.length; i++) {
+    if (newsPageNumber + 1 === news[i].page) {
+      pagClass = 'pagination-element pag-el-active' 
+    }
+    paginationList.push(<p className={pagClass} onClick={() =>{setNewsPageNumber(i)}}><u>{news[i].page}</u></p>)
+    pagClass = 'pagination-element'
+  }
+
+  return (
+    <>
+      {paginationList}
+    </>
+  )
+}
+
+function OneNewPage({page, setPage, currentNew, setCurrentNew, newsPageNumber}) {
+  const currentNewInfo = news[newsPageNumber].news[currentNew]
+
+  return (
+    <>
+      <SideBar page={page} setPage={setPage} />
+      <div className='container'>
+        <NewPageTitle page={page} setPage={setPage} currentNewInfo={currentNewInfo} setCurrentNew={setCurrentNew} />
+        <div className='currentNew'>
+          <CurrentNewBlock currentNewInfo={currentNewInfo} />
+        </div>
+      </div>
+      <Footer setPage={setPage} />
+    </>
+  )
+}
+
+function NewPageTitle({page, setPage, currentNewInfo, setCurrentNew}) {
+  return (
+    <>
+      <div className='page-title-text-block'>
+        {page === "news" && <p><u onClick={() => {setPage("main")}}>Главная / </u><u onClick={() => {setPage("news"); setCurrentNew("")}}>Новости / </u>{currentNewInfo.title}</p>}
+      </div>
+    </>
+  )
+}
+
+function CurrentNewBlock({currentNewInfo}) {
+  let cardImg = "one-new-img"
+  if (currentNewInfo.img === 1) {
+    cardImg = "one-new-img news-img1"
+  } else if (currentNewInfo.img === 2) {
+    cardImg = "one-new-img news-img2"
+  } else if (currentNewInfo.img === 3) {
+    cardImg = "one-new-img news-img3"
+  }
+
+  return (
+    <>
+      <div className='one-new'>
+        <h3>{currentNewInfo.title}</h3>
+        <p className='small gray'>{currentNewInfo.date}</p>
+        <div className={cardImg}></div>
+        <div className='one-new-text-block'>
+          <p>{currentNewInfo.fulltext}</p>
+        </div>
+
+        <div className='one-new-socials-line'></div>
       </div>
     </>
   )
