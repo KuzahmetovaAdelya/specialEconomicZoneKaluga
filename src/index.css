@@ -207,10 +207,6 @@ aside .aside-list p:hover {
 /* First page */
 /* Map block */
 
-.map-block {
-
-}
-
 .map-img {
   width: 100%;
 }
@@ -918,3 +914,34 @@ footer {
   background-repeat: no-repeat;
   background-size: 100% 100%;
 }
+
+.one-new-socials-block {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1vh;
+}
+
+.one-new-socials-line {
+  display: flex;
+  align-items: center;
+}
+
+.one-new-social {
+  display: flex;
+  width: 2.5vw;
+  height: 2.5vw;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--light-gray);
+}
+
+.one-new-social-img {
+  width: 24px;
+}
+
+.smaller {
+  height: 24px;
+}
+
+/* Same news */

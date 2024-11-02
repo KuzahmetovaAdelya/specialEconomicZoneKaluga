@@ -1247,7 +1247,7 @@ function NewsInnerBlock({page, setPage, newsPageNumber, setNewsPageNumber, setCu
   )
 }
 
-function NewsPageCard({info, setPage, setCurrentNew}) {
+function NewsPageCard({info, setCurrentNew}) {
   let cardImg = "news-img"
   if (info.img === 1) {
     cardImg = "news-img news-img1"
@@ -1299,6 +1299,7 @@ function OneNewPage({page, setPage, currentNew, setCurrentNew, newsPageNumber}) 
         <NewPageTitle page={page} setPage={setPage} currentNewInfo={currentNewInfo} setCurrentNew={setCurrentNew} />
         <div className='currentNew'>
           <CurrentNewBlock currentNewInfo={currentNewInfo} />
+          <SameNews currentNewInfo={currentNewInfo} setCurrentNew={setCurrentNew} newsPageNumber={newsPageNumber} />
         </div>
       </div>
       <Footer setPage={setPage} />
@@ -1307,6 +1308,8 @@ function OneNewPage({page, setPage, currentNew, setCurrentNew, newsPageNumber}) 
 }
 
 function NewPageTitle({page, setPage, currentNewInfo, setCurrentNew}) {
+  console.log(currentNewInfo)
+
   return (
     <>
       <div className='page-title-text-block'>
@@ -1328,7 +1331,7 @@ function CurrentNewBlock({currentNewInfo}) {
 
   return (
     <>
-      <div className='one-new'>
+      <div className='one-new mb'>
         <h3>{currentNewInfo.title}</h3>
         <p className='small gray'>{currentNewInfo.date}</p>
         <div className={cardImg}></div>
@@ -1336,7 +1339,41 @@ function CurrentNewBlock({currentNewInfo}) {
           <p>{currentNewInfo.fulltext}</p>
         </div>
 
-        <div className='one-new-socials-line'></div>
+        <div className='one-new-socials-block'>
+          <p><u>Поделиться в соц.сетях</u></p>
+          <div className='one-new-socials-line'>
+            <div className='one-new-social'>
+              <img src={inst} className='one-new-social-img' alt='socials'></img>
+            </div>
+            <div className='one-new-social'>
+              <img src={facebook} className='one-new-social-img smaller' alt='socials'></img>
+            </div>
+            <div className='one-new-social'>
+              <img src={vk} className='one-new-social-img' alt='socials'></img>
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
+  )
+}
+
+function SameNews({currentNewInfo, setCurrentNew, newsPageNumber}) {
+  let sameNewList = []
+  for (let i = 0; i < 3; i++) {
+    sameNewList.push(<NewsPageCard info={news[newsPageNumber].news[i]} setCurrentNew={setCurrentNew} />)
+  }
+  
+
+  console.log(newsPageNumber)
+
+  return (
+    <>
+      <div className='same-news mb'>
+        <h3>ПОХОЖИЕ НОВОСТИ</h3>
+        <div className='news-cards-line'>
+            {sameNewList}
+        </div>
       </div>
     </>
   )
