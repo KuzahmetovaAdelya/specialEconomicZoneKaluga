@@ -26,27 +26,31 @@ import doc from "./document.svg"
 import inst from "./insta.svg"
 import facebook from "./facebook.svg"
 import vk from "./vk.svg"
+import cross from "./cross.svg"
 import news from "./list.js"
-
+import galList from "./galList.js"
 
 export default function App() {
   const [page, setPage] = useState("main")
+  const [isFormActive, setIsFormActive] = useState(false)
 
   return (
     <>
-      {page === "main" && <MainPage page={page} setPage={setPage} />}
-      {page === "preferences" && <PreferencesPage page={page} setPage={setPage} />}
-      {page === "places" && <PlacesPage page={page} setPage={setPage} />}
-      {page === "ludino" && <PloshadkaPage page={page} setPage={setPage} />}
-      {page === "borov" && <PloshadkaPage page={page} setPage={setPage} />}
-      {page === "contacts" && <ContactsPage page={page} setPage={setPage} />} 
-      {page === "grounds" && <FreePlacesPage page={page} setPage={setPage} />} 
-      {page === "news" && <NewsPage page={page} setPage={setPage} />} 
+      {page === "main" && <MainPage page={page} setPage={setPage} setIsFormActive={setIsFormActive} />}
+      {page === "preferences" && <PreferencesPage page={page} setPage={setPage} setIsFormActive={setIsFormActive} />}
+      {page === "places" && <PlacesPage page={page} setPage={setPage} setIsFormActive={setIsFormActive} />}
+      {page === "ludino" && <PloshadkaPage page={page} setPage={setPage} setIsFormActive={setIsFormActive} />}
+      {page === "borov" && <PloshadkaPage page={page} setPage={setPage} setIsFormActive={setIsFormActive} />}
+      {page === "contacts" && <ContactsPage page={page} setPage={setPage} setIsFormActive={setIsFormActive} />} 
+      {page === "grounds" && <FreePlacesPage page={page} setPage={setPage} setIsFormActive={setIsFormActive} />} 
+      {page === "news" && <NewsPage page={page} setPage={setPage} setIsFormActive={setIsFormActive} />} 
+      {page === "gallery" && <GalleryPage page={page} setPage={setPage} setIsFormActive={setIsFormActive} />} 
+      {isFormActive && <ResidentForm setIsFormActive={setIsFormActive} />}
     </>
   )
 }
 
-function SideBar({page, setPage}) {
+function SideBar({page, setPage, setIsFormActive}) {
   return (
     <>
       <aside>
@@ -81,7 +85,7 @@ function SideBar({page, setPage}) {
         </div>
 
         <div className='aside-button-block'>
-          <button className='aside-button'>Стать резидентом</button>
+          <button className='aside-button' onClick={() => {setIsFormActive(true)}}>Стать резидентом</button>
         </div>
       </aside>
     </>
@@ -198,6 +202,7 @@ function PageTitle({page, setPage}) {
         {page === "contacts" && <p><u onClick={() => {setPage("main")}}>Главная / </u>Контакты</p>}
         {page === "grounds" && <p><u onClick={() => {setPage("main")}}>Главная / </u>Свободные участки</p>}
         {page === "news" && <p><u onClick={() => {setPage("main")}}>Главная / </u>Новости</p>}
+        {page === "gallery" && <p><u onClick={() => {setPage("main")}}>Главная / </u>Галерея</p>}
       </div>
     </>
   )
@@ -220,10 +225,10 @@ function PageTextBlock({info}) {
 }
 
 
-function MainPage({page, setPage}) {
+function MainPage({page, setPage, setIsFormActive}) {
   return (
     <>
-      <SideBar page={page} setPage={setPage} />
+      <SideBar page={page} setPage={setPage} setIsFormActive={setIsFormActive} />
       <div className='container'>
         <MapBlock />
         <InfoCardsBlock setPage={setPage} />
@@ -466,7 +471,7 @@ function GalleryBlock() {
 }
 
 
-function PreferencesPage({page, setPage}) {
+function PreferencesPage({page, setPage, setIsFormActive}) {
   const info = [
     {
       title: "Преимущества",
@@ -507,7 +512,7 @@ function PreferencesPage({page, setPage}) {
 
   return (
     <>
-      <SideBar page={page} setPage={setPage} />
+      <SideBar page={page} setPage={setPage} setIsFormActive={setIsFormActive} />
       <div className='container'>
         <PageTitle page={page} setPage={setPage} />
         <PageTextBlock info={info[0]} />
@@ -561,7 +566,7 @@ function PreferencesCard({place, setPage}) {
 }
 
 
-function PlacesPage({page, setPage}) {
+function PlacesPage({page, setPage, setIsFormActive}) {
   const places = [
     {
       title: "ЛЮДИНОВСКАЯ ПЛОЩАДКА",
@@ -577,7 +582,7 @@ function PlacesPage({page, setPage}) {
 
   return (
     <>
-      <SideBar page={page} setPage={setPage} />
+      <SideBar page={page} setPage={setPage} setIsFormActive={setIsFormActive} />
       <div className='container'>
         <PageTitle page={page} setPage={setPage} />
         <h1 className='mb'>ПЛОЩАДКИ</h1>
@@ -607,7 +612,7 @@ function PlacesCard({place, setPage}) {
 }
 
 
-function PloshadkaPage({page, setPage}) {
+function PloshadkaPage({page, setPage, setIsFormActive}) {
   const info = [
     {
       title: "ЛЮДИНОВСКАЯ ПЛОЩАДКА",
@@ -801,7 +806,7 @@ function PloshadkaPage({page, setPage}) {
 
   return (
     <>
-      <SideBar page={page} setPage={setPage} />
+      <SideBar page={page} setPage={setPage} setIsFormActive={setIsFormActive} />
       <div className='container'>
         <PageTitle page={page} setPage={setPage} />
         
@@ -1050,10 +1055,10 @@ function PloshadkaInfo({info, page}) {
 }
 
 
-function ContactsPage({page, setPage}) {
+function ContactsPage({page, setPage, setIsFormActive}) {
   return (
     <>
-      <SideBar page={page} setPage={setPage} />
+      <SideBar page={page} setPage={setPage} setIsFormActive={setIsFormActive} />
       <div className='container'>
         <PageTitle page={page} setPage={setPage} />
         <div className='contacts mb'>
@@ -1085,7 +1090,7 @@ function ContactsPage({page, setPage}) {
 }
 
 
-function FreePlacesPage({page, setPage}) {
+function FreePlacesPage({page, setPage, setIsFormActive}) {
   const list = [
     {
       title: "Людиново",
@@ -1151,7 +1156,7 @@ function FreePlacesPage({page, setPage}) {
 
   return (
     <>
-      <SideBar page={page} setPage={setPage} />
+      <SideBar page={page} setPage={setPage} setIsFormActive={setIsFormActive} />
       <div className='container'>
         <PageTitle page={page} setPage={setPage} />
         <div className='grounds mb'>
@@ -1188,21 +1193,21 @@ function FreePlacesTable({list}) {
 }
 
 
-function NewsPage({page, setPage}) {
+function NewsPage({page, setPage, setIsFormActive}) {
   const [newsPageNumber, setNewsPageNumber] = useState(0)
   const [currentNew, setCurrentNew] = useState("")
 
   return (
     <>
       {currentNew !== "" ? 
-      <OneNewPage page={page} setPage={setPage} currentNew={currentNew} newsPageNumber={newsPageNumber} setCurrentNew={setCurrentNew} /> :
-      <NewsInnerBlock page={page} setPage={setPage} newsPageNumber={newsPageNumber} setNewsPageNumber={setNewsPageNumber} setCurrentNew={setCurrentNew} />
+      <OneNewPage page={page} setPage={setPage} currentNew={currentNew} newsPageNumber={newsPageNumber} setCurrentNew={setCurrentNew} setIsFormActive={setIsFormActive} /> :
+      <NewsInnerBlock page={page} setPage={setPage} newsPageNumber={newsPageNumber} setNewsPageNumber={setNewsPageNumber} setCurrentNew={setCurrentNew} setIsFormActive={setIsFormActive} />
       }
     </>
   )
 }
 
-function NewsInnerBlock({page, setPage, newsPageNumber, setNewsPageNumber, setCurrentNew}) {
+function NewsInnerBlock({page, setPage, newsPageNumber, setNewsPageNumber, setCurrentNew, setIsFormActive}) {
   let newsPage = [[], [], [], []]
   
   for (let i = 0; i < news[newsPageNumber].news.length; i++) {
@@ -1219,7 +1224,7 @@ function NewsInnerBlock({page, setPage, newsPageNumber, setNewsPageNumber, setCu
 
   return (
     <>
-      <SideBar page={page} setPage={setPage} />
+      <SideBar page={page} setPage={setPage} setIsFormActive={setIsFormActive} />
       <div className='container'>
         <PageTitle page={page} setPage={setPage} />
         <div className='news mb'>
@@ -1289,12 +1294,15 @@ function PaginationElement({news, setNewsPageNumber, newsPageNumber}) {
   )
 }
 
-function OneNewPage({page, setPage, currentNew, setCurrentNew, newsPageNumber}) {
-  const currentNewInfo = news[newsPageNumber].news[currentNew]
+function OneNewPage({page, setPage, currentNew, setCurrentNew, newsPageNumber, setIsFormActive}) {
+  let newIndex = news[newsPageNumber].news.map(function(e) {
+    return e.id
+  }).indexOf(currentNew)
+  const currentNewInfo = news[newsPageNumber].news[newIndex]
 
   return (
     <>
-      <SideBar page={page} setPage={setPage} />
+      <SideBar page={page} setPage={setPage} setIsFormActive={setIsFormActive} />
       <div className='container'>
         <NewPageTitle page={page} setPage={setPage} currentNewInfo={currentNewInfo} setCurrentNew={setCurrentNew} />
         <div className='currentNew'>
@@ -1308,8 +1316,6 @@ function OneNewPage({page, setPage, currentNew, setCurrentNew, newsPageNumber}) 
 }
 
 function NewPageTitle({page, setPage, currentNewInfo, setCurrentNew}) {
-  console.log(currentNewInfo)
-
   return (
     <>
       <div className='page-title-text-block'>
@@ -1364,9 +1370,6 @@ function SameNews({currentNewInfo, setCurrentNew, newsPageNumber}) {
     sameNewList.push(<NewsPageCard info={news[newsPageNumber].news[i]} setCurrentNew={setCurrentNew} />)
   }
   
-
-  console.log(newsPageNumber)
-
   return (
     <>
       <div className='same-news mb'>
@@ -1374,6 +1377,358 @@ function SameNews({currentNewInfo, setCurrentNew, newsPageNumber}) {
         <div className='news-cards-line'>
             {sameNewList}
         </div>
+      </div>
+    </>
+  )
+}
+
+
+function GalleryPage({page, setPage, setIsFormActive}) {
+  const [galleryPage, setGalleryPage] = useState(0)
+  // 0 - all, 1 - ludino, 2 - borov
+
+  return (
+    <>
+      <SideBar page={page} setPage={setPage} setIsFormActive={setIsFormActive} />
+      <div className='container'>
+        <PageTitle page={page} setPage={setPage} />
+        <div className='gallery mb'>
+          <h1>ГАЛЕРЕЯ</h1>
+          <GalleryPageChange galleryPage={galleryPage} setGalleryPage={setGalleryPage} />
+          <GalleryPageImages galleryPage={galleryPage} />
+        </div>
+      </div>
+      <Footer setPage={setPage} />
+    </>
+  )
+}
+
+function GalleryPageChange({galleryPage, setGalleryPage}) {
+  return (
+    <>
+      <div className='gallery-pagination-block'>
+        <button className='gallery-pag-button' onClick={() => {setGalleryPage(0)}}>Все</button>
+        <button className='gallery-pag-button' onClick={() => {setGalleryPage(1)}}>Людиновская площадка</button>
+        <button className='gallery-pag-button' onClick={() => {setGalleryPage(2)}}>Боровская площадка</button>
+      </div>
+    </>
+  )
+}
+
+function GalleryPageImages({galleryPage}) {
+  let imgClass = "gallery-img"
+  let galleryImgList = []
+  if (galleryPage === 0) {
+    for (let i = 0; i < galList[0].images.length; i++) {
+      imgClass = "gallery-img " + galList[0].images[i]
+      galleryImgList.push(<div className={imgClass}></div>)
+    }
+    for (let i = 0; i < galList[1].images.length; i++) {
+      imgClass = "gallery-img " + galList[1].images[i]
+      galleryImgList.push(<div className={imgClass}></div>)
+    }
+  } else {
+    let imgIndex = galList.map(function(e) {return e.page}).indexOf(galleryPage)
+    for (let i = 0; i < galList[imgIndex].images.length; i++) {
+      imgClass = "gallery-img " + galList[imgIndex].images[i]
+      galleryImgList.push(<div className={imgClass}></div>)
+    }  
+  }
+
+  return (
+    <>
+      <div className='gallery-images-block'>
+        {galleryImgList}
+      </div>
+    </>
+  )
+}
+
+function ResidentForm({setIsFormActive}) {
+  const [formStep, setFormStep] = useState(1)
+
+  return (
+    <>
+    
+      <div className='residents-form'>
+        <div className='residents-form-container'>
+        {formStep !== 4 ?
+          <><div className='residents-form-title-line mb'>
+            <h4><b>Заполните форму из 3 шагов, чтобы стать нашим резидентом</b></h4>
+            <img src={cross} className='residents-form-icon' alt='cross' onClick={() => {setIsFormActive(false)}}></img>
+          </div>
+
+          <form className='residents-form-block' onSubmit={(e) => {e.preventDefault()}}>
+            {formStep === 1 && <StepOne setFormStep={setFormStep} formStep={formStep} />}
+            {formStep === 2 && <StepTwo setFormStep={setFormStep} formStep={formStep} />}
+            {formStep === 3 && <StepThree setFormStep={setFormStep} formStep={formStep} />}
+
+
+          </form></>
+          :
+            <FormResult setFormStep={setFormStep} setIsFormActive={setIsFormActive} />
+          }
+        </div>
+      </div> 
+      
+    </>
+  )
+}
+
+function StepOne({setFormStep, formStep}) {
+  return (
+    <>
+      <div className='residents-form-inputs-block'>
+        <div className='residents-form-line'>
+          <div className='residents-form-input-item'>
+            <label htmlFor='company-name' className='small'>Название компании</label>
+            <input id='company-name' className='residents-form-input' placeholder='Например ООО «Лес-строй»'></input>
+          </div>
+
+          <div className='residents-form-input-item'>
+            <label htmlFor='company-adress' className='small'>Адрес предприятия</label>
+            <input id='company-adress' className='residents-form-input' placeholder='Например ООО «Лес-строй»'></input>
+          </div>
+        </div>
+
+        <div className='residents-form-line'>
+          <div className='residents-form-input-item'>
+            <label htmlFor='company-inn' className='small'>ИНН</label>
+            <input id='company-inn' className='residents-form-input' placeholder='Введите номер ИНН'></input>
+          </div>
+
+          <div className='residents-form-input-item'>
+            <label htmlFor='company-ogrn' className='small'>ОГРН</label>
+            <input id='company-ogrn' className='residents-form-input' placeholder='Введите номер ОГРН/ОГРНИП'></input>
+          </div>
+        </div>
+
+        <div className='residents-form-input-item'>
+          <label htmlFor='company-date' className='small'>Дата постановки на учёт</label>
+          <input id='company-date' className='residents-form-input' placeholder='Введите номер ОГРН/ОГРНИП'></input>
+        </div>
+      </div>
+
+      <div className='residents-form-line'>
+        <p className='small'><u>Шаг {formStep} из 3</u></p>
+        <button className='small-block' onClick={() => {setFormStep(n => n + 1)}}>Далее</button>
+      </div>
+
+    </>
+  )
+}
+
+function StepTwo({setFormStep, formStep}) {
+  return (
+    <>
+      <div className='residents-form-inputs-block'>
+
+        <div className='residents-form-line'>
+          <div className='residents-form-input-item-small'>
+            <label htmlFor='company-square' className='small'>Площадь запрашиваемого участка, м2</label>
+            <input id='company-square' className='residents-form-input' placeholder='Например 5 000 м2'></input>
+          </div>
+
+          <div className='residents-form-input-item-small'>
+            <label htmlFor='company-length' className='small'>Минимальная длина, м</label>
+            <input id='company-length' className='residents-form-input' placeholder='Например, 500 м'></input>
+          </div>
+
+          <div className='residents-form-input-item-small'>
+            <label htmlFor='company-width' className='small'>Минимальная ширина, м</label>
+            <input id='company-width' className='residents-form-input' placeholder='Например, 500 м'></input>
+          </div>
+        </div>
+
+        <div className='residents-form-line'>
+          <div className='residents-form-input-item'>
+            <label htmlFor='company-ground-category' className='small'>Категория земли</label>
+            <input id='company-ground-category' className='residents-form-input' placeholder='Введите номер ИНН'></input>
+          </div>
+
+          <div className='residents-form-input-item'>
+            <label htmlFor='company-type' className='small'>Вид производства</label>
+            <input id='company-type' className='residents-form-input' placeholder='Введите номер ОГРН/ОГРНИП'></input>
+          </div>
+        </div>
+
+        <div className='residents-form-line'>
+          <div className='residents-form-input-item'>
+            <label htmlFor='company-danger' className='small'>Класс опасности производства, в т.ч пожароопасность</label>
+            <input id='company-danger' className='residents-form-input' placeholder='Введите номер ИНН'></input>
+          </div>
+
+          <div className='residents-form-input-item'>
+            <label htmlFor='company-sanitar' className='small'>Санитарно-защитная зона</label>
+            <input id='company-sanitar' className='residents-form-input' placeholder='Введите номер ОГРН/ОГРНИП'></input>
+          </div>
+        </div>
+
+        <p><u>ЭЛЕКТРОСНАБЖЕНИЕ</u></p>
+        <div className='residents-form-line'>
+          <div className='residents-form-input-item'>
+            <label htmlFor='company-electro-type' className='small'>Электроснабжение, МВТ</label>
+            <input id='company-electro-type' className='residents-form-input' placeholder='Введите номер ИНН'></input>
+          </div>
+
+          <div className='residents-form-input-item'>
+            <label htmlFor='company-electro-category' className='small'>Электроснабжение, категория надежности</label>
+            <input id='company-electro-category' className='residents-form-input' placeholder='Введите номер ОГРН/ОГРНИП'></input>
+          </div>
+        </div>
+
+        <p><u>ГАЗОСНАБЖЕНИЕ</u></p>
+        <div className='residents-form-line'>
+          <div className='residents-form-input-item-small'>
+            <label htmlFor='company-gas-year' className='small'>Кубометров/год</label>
+            <input id='company-gas-year' className='residents-form-input' placeholder='Например 5 000 м2'></input>
+          </div>
+
+          <div className='residents-form-input-item-small'>
+            <label htmlFor='company-gas-hour' className='small'>Кубометров/час</label>
+            <input id='company-gas-hour' className='residents-form-input' placeholder='Например, 500 м'></input>
+          </div>
+
+          <div className='residents-form-input-item-small'>
+            <label htmlFor='company-gas-presure' className='small'>Давление</label>
+            <input id='company-gas-presure' className='residents-form-input' placeholder='Например, 500 м'></input>
+          </div>
+        </div>
+
+        <p><u>ВОДОСНАБЖЕНИЕ</u></p>
+        <div className='residents-form-line'>
+          <div className='residents-form-input-item-small'>
+            <label htmlFor='company-water-day' className='small'>Общее, кубометров в сутки</label>
+            <input id='company-water-day' className='residents-form-input' placeholder='Например 5 000 м2'></input>
+          </div>
+
+          <div className='residents-form-input-item-small'>
+            <label htmlFor='company-water-drink' className='small'>Питьевая, кубометров в сутки</label>
+            <input id='company-water-drink' className='residents-form-input' placeholder='Например, 500 м'></input>
+          </div>
+
+          <div className='residents-form-input-item-small'>
+            <label htmlFor='company-water-presure' className='small'>Давление</label>
+            <input id='company-water-presure' className='residents-form-input' placeholder='Например, 500 м'></input>
+          </div>
+        </div>
+
+        <div className='residents-form-line'>
+          <div className='residents-form-input-item'>
+            <label htmlFor='company-water-common' className='small'>Водоотведение хоз.-быт стоков, кубометров/сутки</label>
+            <input id='company-water-common' className='residents-form-input' placeholder='Введите номер ИНН'></input>
+          </div>
+
+          <div className='residents-form-input-item'>
+            <label htmlFor='company-water-rain' className='small'>Водоотведение ливневых вод л/сек.</label>
+            <input id='company-water-rain' className='residents-form-input' placeholder='Введите номер ОГРН/ОГРНИП'></input>
+          </div>
+        </div>
+      </div>
+
+      <div className='residents-form-line'>
+        <p className='small'><u>Шаг {formStep} из 3</u></p>
+        <div className='buttons-block'>
+          <p className='small back' onClick={() => {setFormStep(n => n - 1)}}><u>Назад</u></p>
+          <button onClick={() => {setFormStep(n => n + 1)}}>Далее</button>
+        </div>
+      </div>
+    </>
+  )
+}
+
+function StepThree({setFormStep, formStep}) {
+  return (
+    <>
+      <div className='residents-form-inputs-block'>
+        <div className='residents-form-line'>
+          <div className='residents-form-input-item'>
+            <label htmlFor='company-gruz' className='small'>Грузооборот автотранспортом (автомобилей/сутки, грузоподъемность)</label>
+            <input id='company-gruz' className='residents-form-input' placeholder='Например ООО «Лес-строй»'></input>
+          </div>
+
+          <div className='residents-form-input-item'>
+            <label htmlFor='company-gd' className='small'>Наличие ж/д путей (необходимость, грузооборот вагонов/сутки)</label>
+            <input id='company-gd' className='residents-form-input' placeholder='Например ООО «Лес-строй»'></input>
+          </div>
+        </div>
+
+        <div className='residents-form-line'>
+          <div className='residents-form-input-item'>
+            <label htmlFor='company-work-places' className='small'>Количество рабочих мест</label>
+            <input id='company-work-places' className='residents-form-input' placeholder='Например ООО «Лес-строй»'></input>
+          </div>
+
+          <div className='residents-form-input-item'>
+            <label htmlFor='company-zp' className='small'>Средняя заработная плата</label>
+            <input id='company-zp' className='residents-form-input' placeholder='Например ООО «Лес-строй»'></input>
+          </div>
+        </div>
+
+        <div className='residents-form-line'>
+          <div className='residents-form-input-item'>
+            <label htmlFor='company-invest-sum' className='small'>Сумма инвестиций в проект</label>
+            <input id='company-invest-sum' className='residents-form-input' placeholder='Например ООО «Лес-строй»'></input>
+          </div>
+
+          <div className='residents-form-input-item'>
+            <label htmlFor='company-investors' className='small'>Источник средств</label>
+            <input id='company-investors' className='residents-form-input' placeholder='Например ООО «Лес-строй»'></input>
+          </div>
+        </div>
+
+        <div className='residents-form-input-item'>
+          <label htmlFor='company-build-period' className='small'>Период строительства</label>
+          <input id='company-build-period' className='residents-form-input' placeholder='Например ООО «Лес-строй»'></input>
+        </div>
+
+        <div className='residents-form-input-item for-textarea'>
+          <label htmlFor='company-another' className='small'>Другие условия</label>
+          <textarea id='company-another' className='residents-form-textarea' placeholder='Например ООО «Лес-строй»'></textarea>
+        </div>
+
+        <p><u>КОНТАТКТЫ</u></p>
+        <div className='residents-form-input-item for-textarea'>
+          <label htmlFor='company-fio' className='small'>ФИО контактного лица</label>
+          <input id='company-fio' className='residents-form-input' placeholder='Например ООО «Лес-строй»'></input>
+        </div>
+
+        <div className='residents-form-line'>
+          <div className='residents-form-input-item'>
+            <label htmlFor='company-phone' className='small'>Телефон</label>
+            <input id='company-phone' className='residents-form-input' placeholder='Например ООО «Лес-строй»'></input>
+          </div>
+
+          <div className='residents-form-input-item'>
+            <label htmlFor='company-email' className='small'>Email</label>
+            <input id='company-email' className='residents-form-input' placeholder='Например ООО «Лес-строй»'></input>
+          </div>
+        </div>
+      </div>
+
+      <div className='residents-form-line'>
+        <p className='small'><u>Шаг {formStep} из 3</u></p>
+        <div className='buttons-block'>
+          <p className='small back' onClick={() => {setFormStep(n => n - 1)}}><u>Назад</u></p>
+          <button onClick={() => {setFormStep(n => n + 1)}}>Далее</button>
+        </div>
+      </div>
+    </>
+  )
+}
+
+function FormResult({setFormStep, setIsFormActive}) {
+  return (
+    <>
+      <div className='residents-form-title-line result-line mb'>
+        <img src={cross} className='residents-form-icon' alt='cross' onClick={() => {setIsFormActive(false)}}></img>
+      </div>
+      <div className='form-result'>
+        <h4><b>СПАСИБО, ВАША ЗАЯВКА ОТПРАВЛЕНА!</b></h4>
+        <button className='small-block' onClick={() => {
+          setIsFormActive(false);
+          setFormStep(1)
+        }}>Хорошо</button>
       </div>
     </>
   )

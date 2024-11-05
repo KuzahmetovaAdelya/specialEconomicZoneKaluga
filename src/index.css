@@ -119,6 +119,10 @@ h4 {
   cursor: pointer;
 }
 
+input {
+  font-family: "TT Norms";
+}
+
 .container {
   padding-left: 399px;
   padding-right: 101px;
@@ -628,6 +632,12 @@ footer {
   padding: 25vh 2vw 2vh 2vw;
 }
 
+.places-card img:hover {
+  filter: invert(90%) sepia(87%) saturate(4615%) hue-rotate(331deg) brightness(99%) contrast(99%);
+  transition: all ease 0.2s;
+  cursor: pointer;
+}
+
 .places-card-text-block {
   display: flex;
   flex-direction: column;
@@ -776,41 +786,41 @@ footer {
   background-size: 100% 100%;
 }
 
-.ludino1 {background-image: url(./ludino1.png);}
+.ludino1 {background-image: url(./ludino1.png) !important;}
 
-.ludino2 {background-image: url(./ludino2.png);}
+.ludino2 {background-image: url(./ludino2.png) !important;}
 
-.ludino3 {background-image: url(./ludino3.png);}
+.ludino3 {background-image: url(./ludino3.png) !important;}
 
-.ludino4 {background-image: url(./ludino4.png);}
+.ludino4 {background-image: url(./ludino4.png) !important;}
 
-.ludino5 {background-image: url(./ludino5.png);}
+.ludino5 {background-image: url(./ludino5.png) !important;}
 
-.ludino6 {background-image: url(./ludino6.png);}
+.ludino6 {background-image: url(./ludino6.png) !important;}
 
-.ludino7 {background-image: url(./ludino7.png);}
+.ludino7 {background-image: url(./ludino7.png) !important;}
 
-.ludino8 {background-image: url(./ludino8.png);}
+.ludino8 {background-image: url(./ludino8.png) !important;}
 
-.ludino9 {background-image: url(./ludino9.png);}
+.ludino9 {background-image: url(./ludino9.png) !important;}
 
-.borov1 {background-image: url(./borov1.png);}
+.borov1 {background-image: url(./borov1.png) !important;}
 
-.borov2 {background-image: url(./borov2.png);}
+.borov2 {background-image: url(./borov2.png) !important;}
 
-.borov3 {background-image: url(./borov3.png);}
+.borov3 {background-image: url(./borov3.png) !important;}
 
-.borov4 {background-image: url(./borov4.png);}
+.borov4 {background-image: url(./borov4.png) !important;}
 
-.borov5 {background-image: url(./borov5.png);}
+.borov5 {background-image: url(./borov5.png) !important;}
 
-.borov6 {background-image: url(./borov6.png);}
+.borov6 {background-image: url(./borov6.png) !important;}
 
-.borov7 {background-image: url(./borov7.png);}
+.borov7 {background-image: url(./borov7.png) !important;}
 
-.borov8 {background-image: url(./borov8.png);}
+.borov8 {background-image: url(./borov8.png) !important;}
 
-.borov9 {background-image: url(./borov9.png)}
+.borov9 {background-image: url(./borov9.png) !important;}
 
 /* Contacts */
 
@@ -945,3 +955,201 @@ footer {
 }
 
 /* Same news */
+.same-news .news-cards-line .news-card:hover {
+  cursor: pointer;
+  transform: scale(1.02);
+  transition: all ease 0.2s;
+}
+
+.same-news .news-cards-line .news-card p, .same-news .news-cards-line .news-card h4 {
+  cursor: pointer;
+}
+
+/* Gallery */
+
+.gallery {
+  display: flex;
+  flex-direction: column;
+  gap: 4vh;
+}
+
+.gallery-pagination-block {
+  display: flex;
+  align-items: center;
+  gap: 1%;
+}
+
+.gallery-pag-button {
+  font-size: 18px;
+  line-height: 28px;
+  font-weight: 700;
+  box-shadow: 0px 0px 10px -2px #00000066;
+  background-color: var(--white);
+  border: 2px solid var(--white);
+  width: auto;
+  padding: 0.5vh 1vw;
+}
+
+.gallery-pag-button:hover {
+  box-shadow: 0px 0px 10px -2px #00000066;
+  border: 2px solid var(--yellow);
+}
+
+.gallery-images-block {
+  display: grid;
+  grid-template-columns: repeat(3, 30%);
+  justify-content: space-between;
+  row-gap: 1%;
+}
+
+.gallery-img {
+  background: var(--gray);
+  width: 100%;
+  height: 20vh;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
+/* Resident form */
+
+.residents-form {
+  z-index: 10;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: var(--white);
+  overflow: hidden;
+}
+
+.residents-form::-webkit-scrollbar {
+  width: 0;
+}
+
+.residents-form-container {
+  padding: 3vh 5vw;
+}
+
+.residents-form-title-line {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.residents-form-title-line h4 {
+  width: 30%;
+}
+
+.residents-form-icon:hover {
+  cursor: pointer;
+  filter: invert(90%) sepia(87%) saturate(4615%) hue-rotate(331deg) brightness(99%) contrast(99%);
+  transition: all ease 0.1s;
+}
+
+.residents-form-block {
+  display: flex;
+  flex-direction: column;
+  gap: 5vh;
+  justify-content: space-between;
+}
+
+.residents-form-inputs-block {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2vh;
+  width: 100%;
+}
+
+.residents-form-line {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.residents-form-input-item {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.5vh;
+  width: 45%;
+}
+
+.residents-form-input {
+  background: var(--light-gray);
+  border: 1px solid var(--gray);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 16.5px;
+  width: calc(100% - 1vw - 1px);
+  padding: 1vh 0vw 1vh 1vw;
+}
+
+.residents-form-input:hover, .residents-form-textarea:hover {
+  border: 1px solid var(--yellow);
+  background: var(--white);
+}
+
+.residents-form-input:focus-visible, .residents-form-textarea:focus-visible {
+  outline: none;
+  border: 1px solid var(--yellow);
+  background: var(--white);
+}
+
+.residents-form-input:user-valid, .residents-form-textarea:user-valid {
+  outline: none;
+  color: var(--gray);
+  border: 1px solid var(--yellow);
+  background: var(--white);
+}
+
+.buttons-block {
+  width: 20%;
+  display: flex;
+  align-items: center;
+  gap: 2vw;
+}
+
+.back:hover {
+  cursor: pointer;
+  color: var(--yellow);
+}
+
+.residents-form-input-item-small {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.5vh;
+  width: 30%;
+}
+
+.residents-form-textarea {
+  background: var(--light-gray);
+  border: 1px solid var(--gray);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 16.5px;
+  min-width: calc(100% - 1vw - 1px);
+  padding: 1vh 0vw 1vh 1vw;
+  font-family: "TT Norms";
+  min-height: 7vh;
+}
+
+.for-textarea {
+  width: 100%;
+}
+
+/* Result */
+.result-line {
+  width: 100%;
+  justify-content: flex-end;
+}
+
+.form-result {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5vh;
+}
